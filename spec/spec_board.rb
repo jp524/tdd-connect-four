@@ -52,4 +52,41 @@ describe Board do
       end
     end
   end
+
+  describe '#game_over?' do
+    context 'when a winning combination is on the board' do
+      it 'is game over' do
+        board.instance_variable_set(:@c1, ['X', 'X', 'X', 'X', ' ', ' '])
+        expect(board).to be_game_over
+      end
+    end
+
+    context 'when no winning combination is on the board' do
+      it 'is not game over' do
+        expect(board).not_to be_game_over
+      end
+    end
+  end
+
+  describe '#vertical_comb?' do
+    context 'when a winning vertical combination is on the board' do
+      it 'returns true' do
+        board.instance_variable_set(:@c1, ['X', 'X', 'X', 'X', ' ', ' '])
+        expect(board.vertical_comb?).to be(true)
+      end
+    end
+
+    context 'when a winning vertical combination is on the board' do
+      it 'returns true' do
+        board.instance_variable_set(:@c3, [' ', 'X', 'X', 'X', 'X', ' '])
+        expect(board.vertical_comb?).to be(true)
+      end
+    end
+
+    context 'when no winning vertical combination is on the board' do
+      it 'returns false' do
+        expect(board.vertical_comb?).to be(false)
+      end
+    end
+  end
 end

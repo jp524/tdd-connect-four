@@ -33,6 +33,22 @@ class Board
     column.pop
     column
   end
+
+  def game_over?
+    # vertical_comb? || horizontal_comb? || diagonal_comb? ? true : false
+    vertical_comb? ? true : false
+  end
+
+  def vertical_comb?
+    conditional = ->(item) { item == 'X' }
+    columns = [@c1, @c2, @c3, @c4, @c5, @c6, @c7]
+    columns.each do |column|
+      return true if column[0...3].all?(conditional)
+      return true if column[1...4].all?(conditional)
+      return true if column[2...5].all?(conditional)
+    end
+    false
+  end
 end
 
 # board = Board.new
