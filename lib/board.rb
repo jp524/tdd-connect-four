@@ -1,5 +1,6 @@
 # frozen_string_literal: false
 
+# Contains and displays the 7x6 game board
 class Board
   def initialize
     @c1 = Array.new(6) { ' ' }
@@ -16,9 +17,9 @@ class Board
       puts "#{@c1[i]}  | #{@c2[i]}  | #{@c3[i]}  | #{@c4[i]}  | #{@c5[i]}  | #{@c6[i]}  | #{@c7[i]}"
     end
     puts '-' * 32
-    puts "c1 | c2 | c3 | c4 | c5 | c6 | c7"
+    puts 'c1 | c2 | c3 | c4 | c5 | c6 | c7'
   end
 end
 
-# board = Board.new
-# board.display
+board = Board.new
+board.display

@@ -1,5 +1,6 @@
 # frozen_string_literal: false
 
+# Contains the game
 class Game
   def verify_input(input)
     return input if input.match?(/c[1-7]/)
