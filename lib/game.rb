@@ -2,17 +2,24 @@
 
 # Contains the game
 class Game
+  def initialize
+    @board = Board.new
+    @input = nil
+  end
+
   def verify_input(input)
     return input if input.match?(/c[1-7]/)
   end
 
   def player_turn
     loop do
-      input = verify_input(player_input)
-      break if input
+      @input = verify_input(player_input)
+      break if @input
 
       puts 'Invalid input.'
     end
+
+    @board.add_to_board(@input)
   end
 
   private

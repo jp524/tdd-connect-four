@@ -19,7 +19,21 @@ class Board
     puts '-' * 32
     puts 'c1 | c2 | c3 | c4 | c5 | c6 | c7'
   end
+
+  def add_to_board(column)
+    column = instance_variable_get("@#{column}")
+    puts 'Column is already full.' unless column.include?(' ')
+
+    insert_index = 0
+    column.each_with_index do |item, index|
+      insert_index = index
+      break if item == ' '
+    end
+    column.insert(insert_index, 'X')
+    column.pop
+    column
+  end
 end
 
-board = Board.new
-board.display
+# board = Board.new
+# board.display

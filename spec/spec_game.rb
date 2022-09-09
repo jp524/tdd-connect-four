@@ -1,6 +1,7 @@
 # frozen_string_literal: false
 
 require_relative '../lib/game'
+require_relative '../lib/board'
 
 describe Game do
   describe '#verify_input' do
@@ -39,6 +40,16 @@ describe Game do
         valid_input = 'c1'
         allow(game).to receive(:player_input).and_return(valid_input)
         expect(game).not_to receive(:puts).with('Invalid input.')
+        game.player_turn
+      end
+    end
+
+    context 'when user input is valid' do
+      it 'stops loop and calls #add_to_board on Board instance' do
+        board = game.instance_variable_get(:@board)
+        valid_input = 'c1'
+        allow(game).to receive(:player_input).and_return(valid_input)
+        expect(board).to receive(:add_to_board).with('c1')
         game.player_turn
       end
     end
