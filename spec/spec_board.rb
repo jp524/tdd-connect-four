@@ -68,6 +68,13 @@ describe Board do
       end
     end
 
+    context 'when a winning diagonal combination is on the board' do
+      it 'is game over' do
+        allow(board).to receive(:diagonal_comb?).and_return(true)
+        expect(board).to be_game_over
+      end
+    end
+
     context 'when no winning combination is on the board' do
       it 'is not game over' do
         expect(board).not_to be_game_over
@@ -126,6 +133,38 @@ describe Board do
         board.instance_variable_set(:@c3, ['X', ' ', ' ', ' ', ' ', ' '])
         board.instance_variable_set(:@c4, [' ', ' ', ' ', ' ', ' ', ' '])
         expect(board.horizontal_comb?).to be(false)
+      end
+    end
+  end
+
+  describe '#diagonal_comb?' do
+    context 'when a winning diagonal combination is on the board' do
+      it 'returns true' do
+        board.instance_variable_set(:@c1, ['X', ' ', ' ', ' ', ' ', ' '])
+        board.instance_variable_set(:@c2, [' ', 'X', ' ', ' ', ' ', ' '])
+        board.instance_variable_set(:@c3, [' ', ' ', 'X', ' ', ' ', ' '])
+        board.instance_variable_set(:@c4, [' ', ' ', ' ', 'X', ' ', ' '])
+        expect(board.diagonal_comb?).to be(true)
+      end
+    end
+
+    context 'when a winning diagonal combination is on the board' do
+      it 'returns true' do
+        board.instance_variable_set(:@c4, [' ', 'X', ' ', ' ', ' ', ' '])
+        board.instance_variable_set(:@c5, [' ', ' ', 'X', ' ', ' ', ' '])
+        board.instance_variable_set(:@c6, [' ', ' ', ' ', 'X', ' ', ' '])
+        board.instance_variable_set(:@c7, [' ', ' ', ' ', ' ', 'X', ' '])
+        expect(board.diagonal_comb?).to be(true)
+      end
+    end
+
+    context 'when no winning diagonal combination is on the board' do
+      it 'returns false' do
+        board.instance_variable_set(:@c4, [' ', ' ', ' ', ' ', ' ', ' '])
+        board.instance_variable_set(:@c5, [' ', ' ', 'X', ' ', ' ', ' '])
+        board.instance_variable_set(:@c6, [' ', ' ', ' ', 'X', ' ', ' '])
+        board.instance_variable_set(:@c7, [' ', ' ', ' ', ' ', 'X', ' '])
+        expect(board.diagonal_comb?).to be(false)
       end
     end
   end

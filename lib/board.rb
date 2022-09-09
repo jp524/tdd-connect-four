@@ -35,8 +35,7 @@ class Board
   end
 
   def game_over?
-    # vertical_comb? || horizontal_comb? || diagonal_comb? ? true : false
-    vertical_comb? || horizontal_comb? ? true : false
+    vertical_comb? || horizontal_comb? || diagonal_comb? ? true : false
   end
 
   def vertical_comb?
@@ -58,6 +57,44 @@ class Board
           return true
         end
       end
+    end
+    false
+  end
+
+  def diagonal_comb?
+    combinations = [[@c1[0], @c2[1], @c3[2], @c4[3]],
+                    [@c1[1], @c2[2], @c3[3], @c4[4]],
+                    [@c1[2], @c2[3], @c3[4], @c4[5]],
+
+                    [@c2[0], @c3[1], @c4[2], @c5[3]],
+                    [@c2[1], @c3[2], @c4[3], @c5[4]],
+                    [@c2[2], @c3[3], @c4[4], @c5[5]],
+
+                    [@c3[0], @c4[1], @c5[2], @c6[3]],
+                    [@c3[1], @c4[2], @c5[3], @c6[4]],
+                    [@c3[2], @c4[3], @c5[4], @c6[5]],
+
+                    [@c4[0], @c5[1], @c6[2], @c7[3]],
+                    [@c4[1], @c5[2], @c6[3], @c7[4]],
+                    [@c4[2], @c5[3], @c6[4], @c7[5]],
+
+                    [@c7[0], @c6[1], @c5[2], @c4[3]],
+                    [@c7[1], @c6[2], @c5[3], @c4[4]],
+                    [@c7[2], @c6[3], @c5[4], @c4[5]],
+
+                    [@c6[0], @c5[1], @c4[2], @c3[3]],
+                    [@c6[1], @c5[2], @c4[3], @c3[4]],
+                    [@c6[2], @c5[3], @c4[4], @c3[5]],
+
+                    [@c5[0], @c4[1], @c3[2], @c2[3]],
+                    [@c5[1], @c4[2], @c3[3], @c2[4]],
+                    [@c5[2], @c4[3], @c3[4], @c2[5]],
+
+                    [@c4[0], @c3[1], @c2[2], @c1[3]],
+                    [@c4[1], @c3[2], @c2[3], @c1[4]],
+                    [@c4[2], @c3[3], @c2[4], @c1[5]]]
+    combinations.each do |combination|
+      return true if combination.all? { |item| item == 'X' }
     end
     false
   end
