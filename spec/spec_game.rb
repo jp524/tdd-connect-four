@@ -30,4 +30,27 @@ describe Game do
       end
     end
   end
+
+  describe '#player_turn' do
+    subject(:game) { described_class.new }
+
+    context 'when user input is valid' do
+      it 'stops loop and does not display error message' do
+        valid_input = 'c1'
+        allow(game).to receive(:player_input).and_return(valid_input)
+        expect(game).not_to receive(:puts).with('Invalid input.')
+        game.player_turn
+      end
+    end
+
+    context 'when user inputs invalid value, then a valid input' do
+      it 'completes loop and display error message once' do
+        valid_input = 'c1'
+        invalid_input = 'c9'
+        allow(game).to receive(:player_input).and_return(invalid_input, valid_input)
+        expect(game).to receive(:puts).with('Invalid input.').once
+        game.player_turn
+      end
+    end
+  end
 end
