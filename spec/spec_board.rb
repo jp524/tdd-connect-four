@@ -85,15 +85,14 @@ describe Board do
 
     context 'when a winning vertical combination is on the board' do
       it 'returns true' do
-        board.instance_variable_set(:@c3, [' ', 'X', 'X', 'X', 'X', ' '])
+        board.instance_variable_set(:@c7, [' ', 'X', 'X', 'X', 'X', ' '])
         expect(board.vertical_comb?).to be(true)
       end
     end
 
     context 'when no winning vertical combination is on the board' do
       it 'returns false' do
-        # continue testing
-        # board.instance_variable_set(:@c3, [' ', ' ', 'X', 'X', 'X', ' '])
+        board.instance_variable_set(:@c3, [' ', ' ', 'X', 'X', 'X', ' '])
         expect(board.vertical_comb?).to be(false)
       end
     end

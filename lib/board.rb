@@ -40,12 +40,11 @@ class Board
   end
 
   def vertical_comb?
-    conditional = ->(item) { item == 'X' }
     columns = [@c1, @c2, @c3, @c4, @c5, @c6, @c7]
     columns.each do |column|
-      return true if column[0...3].all?(conditional)
-      return true if column[1...4].all?(conditional)
-      return true if column[2...5].all?(conditional)
+      return true if column[0..3].all? { |item| item == 'X' }
+      return true if column[1..4].all? { |item| item == 'X' }
+      return true if column[2..5].all? { |item| item == 'X' }
     end
     false
   end
@@ -53,8 +52,8 @@ class Board
   def horizontal_comb?
     marker = 'X'
     columns = [@c1, @c2, @c3, @c4, @c5, @c6, @c7]
-    columns[0...4].each_index do |i|
-      (0..6).each do |j|
+    columns[0..3].each_index do |i|
+      (0..5).each do |j|
         if columns[i][j] == marker && columns[i + 1][j] == marker && columns[i + 2][j] && columns[i + 3][j] == marker
           return true
         end
@@ -65,4 +64,4 @@ class Board
 end
 
 # board = Board.new
-# board.display
+# # board.display
