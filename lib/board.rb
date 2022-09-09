@@ -36,7 +36,7 @@ class Board
 
   def game_over?
     # vertical_comb? || horizontal_comb? || diagonal_comb? ? true : false
-    vertical_comb? ? true : false
+    vertical_comb? || horizontal_comb? ? true : false
   end
 
   def vertical_comb?
@@ -46,6 +46,19 @@ class Board
       return true if column[0...3].all?(conditional)
       return true if column[1...4].all?(conditional)
       return true if column[2...5].all?(conditional)
+    end
+    false
+  end
+
+  def horizontal_comb?
+    marker = 'X'
+    columns = [@c1, @c2, @c3, @c4, @c5, @c6, @c7]
+    columns[0...4].each_index do |i|
+      (0..6).each do |j|
+        if columns[i][j] == marker && columns[i + 1][j] == marker && columns[i + 2][j] && columns[i + 3][j] == marker
+          return true
+        end
+      end
     end
     false
   end
