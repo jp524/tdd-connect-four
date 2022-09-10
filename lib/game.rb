@@ -1,9 +1,14 @@
 # frozen_string_literal: false
 
+require_relative './board'
+require_relative './player'
+
 # Contains the game
 class Game
   def initialize
     @board = Board.new
+    @player1 = Player.new('Player 1', 'X')
+    @player2 = Player.new('Player 2', 'O')
     @input = nil
   end
 
