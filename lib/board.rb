@@ -13,14 +13,14 @@ class Board
   end
 
   def display
-    (0...6).each do |i|
+    5.downto(0).to_a.each do |i|
       puts "#{@c1[i]}  | #{@c2[i]}  | #{@c3[i]}  | #{@c4[i]}  | #{@c5[i]}  | #{@c6[i]}  | #{@c7[i]}"
     end
     puts '-' * 32
     puts 'c1 | c2 | c3 | c4 | c5 | c6 | c7'
   end
 
-  def add_to_board(column)
+  def add_to_board(column, marker)
     column = instance_variable_get("@#{column}")
     puts 'Column is already full.' unless column.include?(' ')
 
@@ -29,7 +29,7 @@ class Board
       insert_index = index
       break if item == ' '
     end
-    column.insert(insert_index, 'X')
+    column.insert(insert_index, marker)
     column.pop
     column
   end

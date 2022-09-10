@@ -49,7 +49,7 @@ describe Game do
         board = game.instance_variable_get(:@board)
         valid_input = 'c1'
         allow(game).to receive(:player_input).and_return(valid_input)
-        expect(board).to receive(:add_to_board).with('c1')
+        expect(board).to receive(:add_to_board).with('c1', 'X')
         game.player_turn
       end
     end
@@ -64,4 +64,7 @@ describe Game do
       end
     end
   end
+
+  # describe '#play_game' do
+  # end
 end
