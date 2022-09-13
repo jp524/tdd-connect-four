@@ -77,7 +77,4 @@ describe Game do
       end
     end
   end
-
-  # describe '#play_game' do
-  # end
 end

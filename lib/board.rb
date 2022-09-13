@@ -34,22 +34,21 @@ class Board
     column
   end
 
-  def game_over?
-    vertical_comb? || horizontal_comb? || diagonal_comb? ? true : false
+  def game_over?(marker)
+    vertical_comb?(marker) || horizontal_comb?(marker) || diagonal_comb?(marker) ? true : false
   end
 
-  def vertical_comb?
+  def vertical_comb?(marker)
     columns = [@c1, @c2, @c3, @c4, @c5, @c6, @c7]
     columns.each do |column|
-      return true if column[0..3].all? { |item| item == 'X' }
-      return true if column[1..4].all? { |item| item == 'X' }
-      return true if column[2..5].all? { |item| item == 'X' }
+      return true if column[0..3].all? { |item| item == marker }
+      return true if column[1..4].all? { |item| item == marker }
+      return true if column[2..5].all? { |item| item == marker }
     end
     false
   end
 
-  def horizontal_comb?
-    marker = 'X'
+  def horizontal_comb?(marker)
     columns = [@c1, @c2, @c3, @c4, @c5, @c6, @c7]
     columns[0..3].each_index do |i|
       (0..5).each do |j|
@@ -61,7 +60,7 @@ class Board
     false
   end
 
-  def diagonal_comb?
+  def diagonal_comb?(marker)
     combinations = [[@c1[0], @c2[1], @c3[2], @c4[3]],
                     [@c1[1], @c2[2], @c3[3], @c4[4]],
                     [@c1[2], @c2[3], @c3[4], @c4[5]],
@@ -94,7 +93,7 @@ class Board
                     [@c4[1], @c3[2], @c2[3], @c1[4]],
                     [@c4[2], @c3[3], @c2[4], @c1[5]]]
     combinations.each do |combination|
-      return true if combination.all? { |item| item == 'X' }
+      return true if combination.all? { |item| item == marker }
     end
     false
   end

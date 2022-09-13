@@ -15,8 +15,14 @@ class Game
 
   def play_game
     introduction
-    player_turn
-    switch_player
+    loop do
+      player_turn
+      if @board.game_over?(@player_list[:active].marker)
+        final_message
+        break
+      end
+      switch_player
+    end
   end
 
   def verify_input(input)
@@ -47,10 +53,14 @@ class Game
   end
 
   def player_input
-    puts "#{@player_list[:active].name}: Type in a column between \e[32m[c1]\e[0m and \e[32m[c7]\e[0m:"
+    puts "\n#{@player_list[:active].name}: Type in a column between \e[32m[c1]\e[0m and \e[32m[c7]\e[0m:"
     gets.chomp
+  end
+
+  def final_message
+    puts "\n#{@player_list[:active].name} wins!"
   end
 end
 
-# game = Game.new
-# game.play_game
+game = Game.new
+game.play_game

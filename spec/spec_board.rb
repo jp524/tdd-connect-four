@@ -57,27 +57,27 @@ describe Board do
     context 'when a winning vertical combination is on the board' do
       it 'is game over' do
         allow(board).to receive(:vertical_comb?).and_return(true)
-        expect(board).to be_game_over
+        expect(board.game_over?('X')).to be(true)
       end
     end
 
     context 'when a winning horizontal combination is on the board' do
       it 'is game over' do
         allow(board).to receive(:horizontal_comb?).and_return(true)
-        expect(board).to be_game_over
+        expect(board.game_over?('X')).to be(true)
       end
     end
 
     context 'when a winning diagonal combination is on the board' do
       it 'is game over' do
         allow(board).to receive(:diagonal_comb?).and_return(true)
-        expect(board).to be_game_over
+        expect(board.game_over?('X')).to be(true)
       end
     end
 
     context 'when no winning combination is on the board' do
       it 'is not game over' do
-        expect(board).not_to be_game_over
+        expect(board.game_over?('X')).to be(false)
       end
     end
   end
@@ -86,21 +86,21 @@ describe Board do
     context 'when a winning vertical combination is on the board' do
       it 'returns true' do
         board.instance_variable_set(:@c1, ['X', 'X', 'X', 'X', ' ', ' '])
-        expect(board.vertical_comb?).to be(true)
+        expect(board.vertical_comb?('X')).to be(true)
       end
     end
 
     context 'when a winning vertical combination is on the board' do
       it 'returns true' do
         board.instance_variable_set(:@c7, [' ', 'X', 'X', 'X', 'X', ' '])
-        expect(board.vertical_comb?).to be(true)
+        expect(board.vertical_comb?('X')).to be(true)
       end
     end
 
     context 'when no winning vertical combination is on the board' do
       it 'returns false' do
         board.instance_variable_set(:@c3, [' ', ' ', 'X', 'X', 'X', ' '])
-        expect(board.vertical_comb?).to be(false)
+        expect(board.vertical_comb?('X')).to be(false)
       end
     end
   end
@@ -112,7 +112,7 @@ describe Board do
         board.instance_variable_set(:@c2, ['X', ' ', ' ', ' ', ' ', ' '])
         board.instance_variable_set(:@c3, ['X', ' ', ' ', ' ', ' ', ' '])
         board.instance_variable_set(:@c4, ['X', ' ', ' ', ' ', ' ', ' '])
-        expect(board.horizontal_comb?).to be(true)
+        expect(board.horizontal_comb?('X')).to be(true)
       end
     end
 
@@ -122,7 +122,7 @@ describe Board do
         board.instance_variable_set(:@c5, [' ', ' ', ' ', ' ', ' ', 'X'])
         board.instance_variable_set(:@c6, [' ', ' ', ' ', ' ', ' ', 'X'])
         board.instance_variable_set(:@c7, [' ', ' ', ' ', ' ', ' ', 'X'])
-        expect(board.horizontal_comb?).to be(true)
+        expect(board.horizontal_comb?('X')).to be(true)
       end
     end
 
@@ -132,7 +132,7 @@ describe Board do
         board.instance_variable_set(:@c2, ['X', ' ', ' ', ' ', ' ', ' '])
         board.instance_variable_set(:@c3, ['X', ' ', ' ', ' ', ' ', ' '])
         board.instance_variable_set(:@c4, [' ', ' ', ' ', ' ', ' ', ' '])
-        expect(board.horizontal_comb?).to be(false)
+        expect(board.horizontal_comb?('X')).to be(false)
       end
     end
   end
@@ -144,7 +144,7 @@ describe Board do
         board.instance_variable_set(:@c2, [' ', 'X', ' ', ' ', ' ', ' '])
         board.instance_variable_set(:@c3, [' ', ' ', 'X', ' ', ' ', ' '])
         board.instance_variable_set(:@c4, [' ', ' ', ' ', 'X', ' ', ' '])
-        expect(board.diagonal_comb?).to be(true)
+        expect(board.diagonal_comb?('X')).to be(true)
       end
     end
 
@@ -154,7 +154,7 @@ describe Board do
         board.instance_variable_set(:@c5, [' ', ' ', 'X', ' ', ' ', ' '])
         board.instance_variable_set(:@c6, [' ', ' ', ' ', 'X', ' ', ' '])
         board.instance_variable_set(:@c7, [' ', ' ', ' ', ' ', 'X', ' '])
-        expect(board.diagonal_comb?).to be(true)
+        expect(board.diagonal_comb?('X')).to be(true)
       end
     end
 
@@ -164,7 +164,7 @@ describe Board do
         board.instance_variable_set(:@c5, [' ', ' ', 'X', ' ', ' ', ' '])
         board.instance_variable_set(:@c6, [' ', ' ', ' ', 'X', ' ', ' '])
         board.instance_variable_set(:@c7, [' ', ' ', ' ', ' ', 'X', ' '])
-        expect(board.diagonal_comb?).to be(false)
+        expect(board.diagonal_comb?('X')).to be(false)
       end
     end
   end
