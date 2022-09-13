@@ -9,14 +9,14 @@ class Game
     @board = Board.new
     @player1 = Player.new('Player 1', 'X')
     @player2 = Player.new('Player 2', 'O')
-    @player_list = { active: @player1, inactive: @player1 }
+    @player_list = { active: @player1, inactive: @player2 }
     @input = nil
   end
 
   def play_game
     introduction
     player_turn
-
+    switch_player
   end
 
   def verify_input(input)
@@ -35,6 +35,10 @@ class Game
     @board.display
   end
 
+  def switch_player
+    @player_list[:active], @player_list[:inactive] = @player_list[:inactive], @player_list[:active]
+  end
+
   private
 
   def introduction
@@ -48,5 +52,5 @@ class Game
   end
 end
 
-game = Game.new
-game.play_game
+# game = Game.new
+# game.play_game

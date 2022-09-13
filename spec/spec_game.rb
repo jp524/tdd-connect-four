@@ -65,6 +65,19 @@ describe Game do
     end
   end
 
+  describe '#switch_player' do
+    subject(:game) { described_class.new }
+
+    context 'when called' do
+      it 'switches the active player' do
+        player_list = game.instance_variable_get(:@player_list)
+        player1 = game.instance_variable_get(:@player1)
+        player2 = game.instance_variable_get(:@player2)
+        expect { game.switch_player }.to(change { player_list[:active] }.from(player1).to(player2))
+      end
+    end
+  end
+
   # describe '#play_game' do
   # end
 end
